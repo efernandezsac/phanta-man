@@ -1,14 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://7ybb8y8yuh4g"]
+[gd_scene load_steps=7 format=3 uid="uid://7ybb8y8yuh4g"]
 
-[ext_resource type="Texture2D" uid="uid://eku3eeie8eir" path="res://Assets/Items/Coin/AnimatedTexture_Coin.tres" id="1_etexx"]
+[ext_resource type="Texture2D" uid="uid://eku3eeie8eir" path="res://Assets/Items/coin/AnimatedTexture_Coin.tres" id="1_etexx"]
 [ext_resource type="Script" path="res://Scenes/Collectibles/coin.gd" id="1_qj3gv"]
 [ext_resource type="AudioStream" uid="uid://bb1eiiyebguec" path="res://Sound/Sfx/coin.wav" id="3_3twkk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5o1qq"]
 radius = 4.0
 
+[sub_resource type="Gradient" id="Gradient_q8wm1"]
+offsets = PackedFloat32Array(0, 0.034632, 0.731602)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y6hmh"]
+gradient = SubResource("Gradient_q8wm1")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
 [node name="Coin" type="Area2D"]
-collision_layer = 8
+collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_qj3gv")
 
@@ -20,6 +32,10 @@ shape = SubResource("CircleShape2D_5o1qq")
 
 [node name="CollectedCoinSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_3twkk")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+range_layer_min = -100
+texture = SubResource("GradientTexture2D_y6hmh")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="finished" from="CollectedCoinSfx" to="." method="_on_collected_coin_sfx_finished"]

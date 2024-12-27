@@ -17,6 +17,7 @@ var chase_timer: float = 0.0        # Timer to forget the player after losing de
 var player: Node2D = null           # Reference to the player
 var player_detected: bool = false   # Bandera para detección del jugador
 var health_amount : int = 3
+var damage_amount : int = 1
 
 # Node references
 @onready var sprite = $AnimatedSprite2D # Reference to the enemy's sprite
@@ -145,7 +146,8 @@ func _on_hurtbox_area_entered(area: Area2D):
 			
 			# Instanciar el efecto de muerte
 			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
-			enemy_death_effect_instance.global_position = global_position
+			var sprite_height = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame).get_height()
+			enemy_death_effect_instance.global_position = global_position - Vector2(0, sprite_height / 2)
 			get_parent().add_child(enemy_death_effect_instance)  # Añadir al árbol de la escena
 			
 			# Eliminar al enemigo después de instanciar el efecto

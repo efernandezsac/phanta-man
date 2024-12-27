@@ -1,15 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://bejlam672qxfx"]
+[gd_scene load_steps=15 format=3 uid="uid://bejlam672qxfx"]
 
 [ext_resource type="Script" path="res://Levels/main_menu.gd" id="1_u5g38"]
 [ext_resource type="Texture2D" uid="uid://cttdr0aw2qqnh" path="res://Assets/Images/Mega Man (1).jpg" id="2_btnpw"]
 [ext_resource type="Theme" uid="uid://cm1110gbmegeo" path="res://Assets/main_menu_theme.tres" id="2_s6usn"]
+[ext_resource type="FontFile" uid="uid://bsve0ogn0pegu" path="res://Assets/Fonts/dogicapixelbold.ttf" id="3_oh6ai"]
 [ext_resource type="AudioStream" uid="uid://30ugm4vv42og" path="res://Sound/Sfx/HoverSound.wav" id="4_croxt"]
 [ext_resource type="AudioStream" uid="uid://bpqoawr5w6778" path="res://Sound/Sfx/PressSound3.wav" id="5_n7pee"]
+[ext_resource type="Texture2D" uid="uid://bukr4hkvtr6mj" path="res://Assets/Characters/Player/Cave_Player/player-idle/player-idle-1.png" id="6_pnycm"]
+[ext_resource type="Texture2D" uid="uid://dxp2qpi1vtov0" path="res://Assets/Characters/Player/Cave_Player/player-idle/player-idle-2.png" id="7_ntylg"]
+[ext_resource type="Texture2D" uid="uid://cuhsjfednr0ab" path="res://Assets/Characters/Player/Cave_Player/player-idle/player-idle-3.png" id="8_ixmed"]
+[ext_resource type="Texture2D" uid="uid://bimwq7n1ilgnn" path="res://Assets/Characters/Player/Cave_Player/player-idle/player-idle-4.png" id="9_gy027"]
+[ext_resource type="Texture2D" uid="uid://bfaqdlneg3fqh" path="res://Assets/Tileset/City_Main_Menu/back.png" id="11_su34q"]
+[ext_resource type="Texture2D" uid="uid://imxvndx6bbas" path="res://Assets/Tileset/City_Main_Menu/buildings.png" id="12_64wfg"]
+[ext_resource type="VideoStream" path="res://Assets/Videos/Grabación-de-pantalla-2024-12-26-072427.ogv" id="13_tkcn3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4suc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_pnycm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ntylg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ixmed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gy027")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_u5g38")
 
 [node name="MegaMan(1)" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.673148, 0.673148)
 texture = ExtResource("2_btnpw")
 centered = false
@@ -18,13 +47,15 @@ centered = false
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 461.0
+offset_left = 418.0
 offset_top = 54.0
-offset_right = 648.0
+offset_right = 688.0
 offset_bottom = 93.0
 grow_vertical = 2
 theme_type_variation = &"HeaderLarge"
-text = "PHANTA MAN"
+theme_override_fonts/font = ExtResource("3_oh6ai")
+text = "PHANTA
+MAN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -67,6 +98,54 @@ stream = ExtResource("4_croxt")
 
 [node name="PressSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_n7pee")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_left = 241.0
+offset_top = 86.0
+offset_right = 1473.0
+offset_bottom = 454.0
+scale = Vector2(0.5, 0.5)
+stream = ExtResource("13_tkcn3")
+autoplay = true
+loop = true
+
+[node name="PlayerDemo" type="AnimatedSprite2D" parent="."]
+position = Vector2(878, 228)
+sprite_frames = SubResource("SpriteFrames_g4suc")
+animation = &"idle"
+autoplay = "idle"
+flip_h = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(338, 85)
+texture = ExtResource("11_su34q")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(479.5, 445)
+scale = Vector2(3.32986, 3.70833)
+texture = ExtResource("12_64wfg")
 
 [connection signal="pressed" from="Options/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Options/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]

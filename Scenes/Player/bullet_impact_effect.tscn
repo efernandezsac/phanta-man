@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d2ibe4qyl87su" path="res://Assets/Fx/bullet-impact/impact-3.png" id="3_nn2j5"]
 [ext_resource type="Texture2D" uid="uid://ckcsixst12pc8" path="res://Assets/Fx/bullet-impact/impact-4.png" id="4_hwxkj"]
 [ext_resource type="Texture2D" uid="uid://dhx3shst3o33w" path="res://Assets/Fx/bullet-impact/impact-5.png" id="5_yn8r4"]
-[ext_resource type="Script" path="res://bullet_impact_effect.gd" id="6_3gyuk"]
+[ext_resource type="Script" path="res://Scenes/Player/bullet_impact_effect.gd" id="6_3gyuk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5r2nt"]
 animations = [{

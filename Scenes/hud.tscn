@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c547rg4kx0i20"]
+[gd_scene load_steps=6 format=3 uid="uid://c547rg4kx0i20"]
 
 [ext_resource type="Script" path="res://Scenes/hud.gd" id="1_cj2ml"]
-[ext_resource type="Texture2D" uid="uid://eku3eeie8eir" path="res://Assets/Items/Coin/AnimatedTexture_Coin.tres" id="3_mn17c"]
+[ext_resource type="FontFile" uid="uid://bsve0ogn0pegu" path="res://Assets/Fonts/dogicapixelbold.ttf" id="2_78v0k"]
+[ext_resource type="PackedScene" uid="uid://dtpwy47ey87a1" path="res://Scenes/health_bar.tscn" id="3_kkiib"]
+[ext_resource type="Texture2D" uid="uid://eku3eeie8eir" path="res://Assets/Items/coin/AnimatedTexture_Coin.tres" id="3_mn17c"]
 
 [sub_resource type="GDScript" id="GDScript_csinx"]
 script/source = "extends Label
@@ -14,20 +16,43 @@ func level(num):
 script = ExtResource("1_cj2ml")
 
 [node name="CurrentLevel" type="Label" parent="."]
-offset_right = 54.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 45.0
 offset_bottom = 23.0
-text = "Level 1"
-metadata/_edit_use_anchors_ = true
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_78v0k")
+text = "Level: "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CoinsLabel" type="Label" parent="."]
-offset_left = 84.0
-offset_right = 145.0
-offset_bottom = 23.0
-text = "Coins: 0"
+anchors_preset = -1
+anchor_left = -0.0257812
+anchor_top = -0.0125
+anchor_right = -0.0257812
+anchor_bottom = -0.0125
+offset_left = 50.0
+offset_top = 64.0
+offset_right = 111.0
+offset_bottom = 87.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("2_78v0k")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 script = SubResource("GDScript_csinx")
 metadata/_edit_use_anchors_ = true
 
 [node name="CoinSprite2D" type="Sprite2D" parent="."]
-position = Vector2(157, 12)
-scale = Vector2(2, 2)
+position = Vector2(29, 77)
+scale = Vector2(4, 4)
 texture = ExtResource("3_mn17c")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_kkiib")]
+position = Vector2(8, 8)
+scale = Vector2(3, 3)

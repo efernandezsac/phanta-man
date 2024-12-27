@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_coin_collected() -> void:
-	$HUD/CoinsLabel.text = "Coins: " + str(Global.coins_collected)
+	$HUD/CoinsLabel.text = str(Global.coins_collected)
 
 func set_coins_label():
 	$HUD.coins(Global.coins_collected)
@@ -31,4 +31,5 @@ func _input(event):
 	if event.is_action_pressed("reset_level"):
 		get_tree().reload_current_scene.call_deferred()
 		Global.coins_collected = 0
+		Global.current_health = Global.max_health
 		set_coins_label()

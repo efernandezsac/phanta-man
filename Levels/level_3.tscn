@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://2ukn8ps0f7gt"]
+[gd_scene load_steps=24 format=4 uid="uid://2ukn8ps0f7gt"]
 
 [ext_resource type="Texture2D" uid="uid://btbxmcg3cm3v8" path="res://Assets/Tileset/warped-Caves/tilesets.png" id="1_hu0hf"]
 [ext_resource type="Script" path="res://Levels/level.gd" id="1_nfn1d"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://vfmiw4hc7cui" path="res://Scenes/Enviroment/door.tscn" id="5_rp2h0"]
 [ext_resource type="PackedScene" uid="uid://7ybb8y8yuh4g" path="res://Scenes/Collectibles/coin.tscn" id="6_r5co2"]
 [ext_resource type="Texture2D" uid="uid://bnaflqc22jpbm" path="res://Assets/Tileset/spikes.png" id="8_5do82"]
+[ext_resource type="PackedScene" uid="uid://br4ytfykrao5s" path="res://Scenes/Collectibles/health_orb.tscn" id="12_ajheu"]
 [ext_resource type="PackedScene" uid="uid://dm8ibs0atnfab" path="res://Scenes/Enemies/Crab/crab.tscn" id="12_rkany"]
 [ext_resource type="PackedScene" uid="uid://dugw16gdrdi23" path="res://Scenes/Enemies/Jumper/jumper.tscn" id="13_jaffv"]
 [ext_resource type="PackedScene" uid="uid://borqi8sgj4p7i" path="res://Scenes/Enemies/Dino/dino.tscn" id="15_by0i1"]
@@ -486,13 +487,14 @@ tile_set = SubResource("TileSet_jea7d")
 
 [node name="HUD" parent="." instance=ExtResource("3_wt0j8")]
 
-[node name="Player" parent="." instance=ExtResource("2_606f6")]
-position = Vector2(1249, -88)
-scale = Vector2(0.816, 0.816)
-
 [node name="Door" parent="." instance=ExtResource("5_rp2h0")]
 position = Vector2(663, -41)
 level = "res://Levels/level_1.tscn"
+
+[node name="HealthOrbs" type="Node" parent="."]
+
+[node name="HealthOrb" parent="HealthOrbs" instance=ExtResource("12_ajheu")]
+position = Vector2(1264, 127)
 
 [node name="Coins" type="Node" parent="."]
 
@@ -514,7 +516,7 @@ position = Vector2(3096, 112)
 position = Vector2(1524, 79)
 
 [node name="Crab2" parent="Enemies" instance=ExtResource("12_rkany")]
-position = Vector2(1552, 75)
+position = Vector2(2049, 123)
 
 [node name="Crab3" parent="Enemies" instance=ExtResource("12_rkany")]
 position = Vector2(3226, 126)
@@ -524,5 +526,14 @@ position = Vector2(2242, 128)
 
 [node name="Dino" parent="Enemies" instance=ExtResource("15_by0i1")]
 position = Vector2(1382, 121)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+blend_mode = 1
+range_layer_min = -100
+
+[node name="Player" parent="." instance=ExtResource("2_606f6")]
+position = Vector2(1515, 158)
+scale = Vector2(0.816, 0.816)
 
 [connection signal="player_entered" from="Door" to="." method="_on_door_player_entered"]

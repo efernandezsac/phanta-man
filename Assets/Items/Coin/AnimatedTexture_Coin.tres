@@ -1,11 +1,11 @@
 [gd_resource type="AnimatedTexture" load_steps=7 format=3 uid="uid://eku3eeie8eir"]
 
-[ext_resource type="Texture2D" uid="uid://cia7cldu8ljiu" path="res://Assets/Items/Coin/Coin1.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://pmg0lsfsxn1u" path="res://Assets/Items/Coin/Coin2.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://b6bjxdo0towsj" path="res://Assets/Items/Coin/Coin3.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://c34de45f0lea1" path="res://Assets/Items/Coin/Coin4.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://gyjccef6x6u2" path="res://Assets/Items/Coin/Coin5.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://tdox2ewqnx70" path="res://Assets/Items/Coin/Coin6.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cia7cldu8ljiu" path="res://Assets/Items/coin/Coin1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://pmg0lsfsxn1u" path="res://Assets/Items/coin/Coin2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b6bjxdo0towsj" path="res://Assets/Items/coin/Coin3.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c34de45f0lea1" path="res://Assets/Items/coin/Coin4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://gyjccef6x6u2" path="res://Assets/Items/coin/Coin5.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://tdox2ewqnx70" path="res://Assets/Items/coin/Coin6.png" id="6"]
 
 [resource]
 frames = 6

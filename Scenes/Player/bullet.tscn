@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgxnrag2iepdp"]
+[gd_scene load_steps=8 format=3 uid="uid://bgxnrag2iepdp"]
 
 [ext_resource type="Script" path="res://Scenes/Player/bullet.gd" id="1_721oy"]
 [ext_resource type="Texture2D" uid="uid://wyld3whfw415" path="res://Assets/Fx/shot/shot-1.png" id="1_ku4l2"]
@@ -26,6 +26,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_lfn7h"]
 radius = 3.0
 
+[sub_resource type="Gradient" id="Gradient_w6t2j"]
+offsets = PackedFloat32Array(0, 0.0649351, 0.393939, 0.792208)
+colors = PackedColorArray(1, 0.968627, 0.811765, 1, 0.94902, 0.647059, 0.247059, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y7238"]
+gradient = SubResource("Gradient_w6t2j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Bullet" type="Area2D"]
 collision_layer = 2
 collision_mask = 5
@@ -38,6 +47,10 @@ frame_progress = 0.686368
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lfn7h")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_y7238")
+texture_scale = 2.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

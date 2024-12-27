@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var player_death_effect = preload("res://Scenes/Player/player_death_effect.tscn")
+
 # --- Movement Constants ---
 const SPEED = 200.0 # Player's horizontal movement speed
 const JUMP_VELOCITY = -300.0 # Initial velocity for jumping (negative because up is negative in 2D)
@@ -98,11 +100,11 @@ func handle_jump_input(delta: float) -> void:
 # --- Handle shooting input ---
 func handle_shoot_input() -> void:
 	if Input.is_action_just_pressed("shoot"):
+		shoot()
 		if is_on_floor():  # Si está en el suelo
 			if not is_zero_approx(velocity.x):  # Si se está moviendo
 				change_state(State.RUN_SHOOT)
 				$AnimatedSprite2D.play("run_shoot")
-				await $AnimatedSprite2D.animation_finished
 				current_state = State.RUN
 			else:  # Si está quieto
 				change_state(State.SHOOT)
@@ -112,10 +114,9 @@ func handle_shoot_input() -> void:
 		else: # Si está en el aire
 			change_state(State.AIR_SHOOT)
 			$AnimatedSprite2D.play("air_shoot")
+			await $AnimatedSprite2D.animation_finished
 			current_state = State.JUMP
-		# Lógica para disparar un proyectil (opcional)
-		shoot()
-		
+
 # ============================
 # --- State Management ---
 # ============================
@@ -217,18 +218,32 @@ func shoot() -> void:
 	else:
 		projectile.direction = Vector2.RIGHT
 		
+		
+func death():
+	var player_death_effect_instance = player_death_effect.instantiate() as Node2D
+	player_death_effect_instance.global_position = global_position
+	get_parent().add_child(player_death_effect_instance)
+	hide()
 # ============================
 # --- Collision Handling ---
 # ============================
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
-		print("Enemy touched you")
-	elif current_state != State.DEATH:  # Prevent multiple triggers
+		print("Enemy touched you ", body.damage_amount)
+		Global.decrease_health(body.damage_amount)
+		print("Tu vida es: ", Global.current_health, ". Daño recibido: ", body.damage_amount)
+		$HitAnimationPlayer.play("hit")
+		
+		if Global.current_health <= 0:
+			change_state(State.DEATH)
+			death()
+	
+	elif Global.current_health >= 0 and current_state != State.DEATH:  # Prevent multiple triggers
 		print("¡Has muerto!")
 		change_state(State.DEATH)
 		$AnimatedSprite2D.play("death")
-
+		
 		# Wait for the death animation to finish before restarting the level
 		await $AnimatedSprite2D.animation_finished
 		get_tree().reload_current_scene()
