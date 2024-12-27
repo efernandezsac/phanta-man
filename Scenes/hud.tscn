@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://c547rg4kx0i20"]
+
+[ext_resource type="Script" path="res://Scenes/hud.gd" id="1_cj2ml"]
+[ext_resource type="Texture2D" uid="uid://eku3eeie8eir" path="res://Assets/Items/Coin/AnimatedTexture_Coin.tres" id="3_mn17c"]
+
+[sub_resource type="GDScript" id="GDScript_csinx"]
+script/source = "extends Label
+
+func level(num):
+	$HUD
+"
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_cj2ml")
+
+[node name="CurrentLevel" type="Label" parent="."]
+offset_right = 54.0
+offset_bottom = 23.0
+text = "Level 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="CoinsLabel" type="Label" parent="."]
+offset_left = 84.0
+offset_right = 145.0
+offset_bottom = 23.0
+text = "Coins: 0"
+script = SubResource("GDScript_csinx")
+metadata/_edit_use_anchors_ = true
+
+[node name="CoinSprite2D" type="Sprite2D" parent="."]
+position = Vector2(157, 12)
+scale = Vector2(2, 2)
+texture = ExtResource("3_mn17c")

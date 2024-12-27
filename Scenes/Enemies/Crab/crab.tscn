@@ -1,0 +1,102 @@
+[gd_scene load_steps=14 format=3 uid="uid://dm8ibs0atnfab"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Crab/crab.gd" id="1_75sii"]
+[ext_resource type="Texture2D" uid="uid://chb0wm50fyjuo" path="res://Assets/Characters/Enemies/Crab/crab-idle/crab-idle-1.png" id="2_e1oa1"]
+[ext_resource type="Texture2D" uid="uid://crt8sxqetukoj" path="res://Assets/Characters/Enemies/Crab/crab-idle/crab-idle-2.png" id="3_wejqo"]
+[ext_resource type="Texture2D" uid="uid://b5sly4auwdhsj" path="res://Assets/Characters/Enemies/Crab/crab-idle/crab-idle-3.png" id="4_ysaxb"]
+[ext_resource type="Texture2D" uid="uid://bkcvsocqhct12" path="res://Assets/Characters/Enemies/Crab/crab-idle/crab-idle-4.png" id="5_r6iek"]
+[ext_resource type="Texture2D" uid="uid://d2yxnn2dkoisf" path="res://Assets/Characters/Enemies/Crab/crab-walk/crab-walk-1.png" id="6_mct6b"]
+[ext_resource type="Texture2D" uid="uid://degn4e2gumy31" path="res://Assets/Characters/Enemies/Crab/crab-walk/crab-walk-2.png" id="7_0ay56"]
+[ext_resource type="Texture2D" uid="uid://ba1oxmvxvyxsg" path="res://Assets/Characters/Enemies/Crab/crab-walk/crab-walk-3.png" id="8_ns6hc"]
+[ext_resource type="Texture2D" uid="uid://dgbdbtib3qe52" path="res://Assets/Characters/Enemies/Crab/crab-walk/crab-walk-4.png" id="9_uaa8j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n167p"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e1oa1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wejqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ysaxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r6iek")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mct6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0ay56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ns6hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uaa8j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ftkew"]
+radius = 13.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_va13g"]
+size = Vector2(100, 35)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixxcl"]
+radius = 14.0357
+
+[node name="Crab" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_75sii")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_n167p")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_ftkew")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="FloorRayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-15, -13)
+target_position = Vector2(0, 20)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(-50, -17.5)
+shape = SubResource("RectangleShape2D_va13g")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -13)
+collision_layer = 4
+collision_mask = 2
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_ixxcl")
+debug_color = Color(0.839216, 0.219608, 0.776471, 0.419608)
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

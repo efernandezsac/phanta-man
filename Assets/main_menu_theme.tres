@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cm1110gbmegeo"]
+
+[ext_resource type="FontFile" uid="uid://bsve0ogn0pegu" path="res://Assets/Fonts/dogicapixelbold.ttf" id="1_j4ur0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3x8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydqg1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbpx6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uqwq5"]
+
+[resource]
+Button/colors/font_focus_color = Color(0.94902, 0.94902, 0, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.94902, 0, 1)
+Button/colors/font_pressed_color = Color(1, 0, 1, 1)
+Button/fonts/font = ExtResource("1_j4ur0")
+Button/styles/focus = SubResource("StyleBoxEmpty_f3x8d")
+Button/styles/hover = SubResource("StyleBoxEmpty_ydqg1")
+Button/styles/normal = SubResource("StyleBoxEmpty_kbpx6")
+Button/styles/pressed = SubResource("StyleBoxEmpty_uqwq5")

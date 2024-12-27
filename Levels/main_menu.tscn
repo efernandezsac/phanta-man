@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://bejlam672qxfx"]
+
+[ext_resource type="Script" path="res://Levels/main_menu.gd" id="1_u5g38"]
+[ext_resource type="Texture2D" uid="uid://cttdr0aw2qqnh" path="res://Assets/Images/Mega Man (1).jpg" id="2_btnpw"]
+[ext_resource type="Theme" uid="uid://cm1110gbmegeo" path="res://Assets/main_menu_theme.tres" id="2_s6usn"]
+[ext_resource type="AudioStream" uid="uid://30ugm4vv42og" path="res://Sound/Sfx/HoverSound.wav" id="4_croxt"]
+[ext_resource type="AudioStream" uid="uid://bpqoawr5w6778" path="res://Sound/Sfx/PressSound3.wav" id="5_n7pee"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_u5g38")
+
+[node name="MegaMan(1)" type="Sprite2D" parent="."]
+scale = Vector2(0.673148, 0.673148)
+texture = ExtResource("2_btnpw")
+centered = false
+
+[node name="TitleLabel" type="Label" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 461.0
+offset_top = 54.0
+offset_right = 648.0
+offset_bottom = 93.0
+grow_vertical = 2
+theme_type_variation = &"HeaderLarge"
+text = "PHANTA MAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="VFlowContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 39.0
+offset_top = 324.0
+offset_right = 289.0
+offset_bottom = 392.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_s6usn")
+
+[node name="StartButton" type="Button" parent="Options"]
+layout_mode = 2
+text = "Start"
+alignment = 0
+
+[node name="OptionsButton" type="Button" parent="Options"]
+layout_mode = 2
+text = "Options"
+alignment = 0
+
+[node name="FullscreenButton" type="Button" parent="Options"]
+layout_mode = 2
+text = "Toggle Fullscreen"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="Options"]
+layout_mode = 2
+text = "Quit"
+alignment = 0
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_croxt")
+
+[node name="PressSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_n7pee")
+
+[connection signal="pressed" from="Options/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Options/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="Options/QuitButton" to="." method="_on_quit_button_pressed"]
