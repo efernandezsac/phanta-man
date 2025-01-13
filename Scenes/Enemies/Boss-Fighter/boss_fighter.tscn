@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://clpgdulvp1g32"]
+
+[ext_resource type="Texture2D" uid="uid://dxd0mfagumbrw" path="res://assets/images/fx/thrust-1/thrust1.png" id="1_yamuw"]
+[ext_resource type="Texture2D" uid="uid://dfk8fvhsfpbn8" path="res://assets/images/fx/thrust-1/thrust2.png" id="2_l3f4b"]
+[ext_resource type="Texture2D" uid="uid://c3mwd4fb28h85" path="res://assets/images/fx/thrust-1/thrust3.png" id="3_7tnbr"]
+[ext_resource type="Texture2D" uid="uid://dya2dibml54o0" path="res://assets/images/characters/Enemies/Bosses/Boss-Fighter/LeftWing.png" id="4_6tq7s"]
+[ext_resource type="Texture2D" uid="uid://bsulfbf0otqjb" path="res://assets/images/characters/Enemies/Bosses/Boss-Fighter/RightWing.png" id="5_x7fj0"]
+[ext_resource type="Texture2D" uid="uid://qlns17fm2i0y" path="res://assets/images/characters/Enemies/Bosses/Boss-Fighter/hull-2.png" id="6_jolo3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfmfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yamuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_l3f4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7tnbr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ktvf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_jolo3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07fyb"]
+size = Vector2(60, 111)
+
+[node name="BossFighter" type="CharacterBody2D"]
+
+[node name="Thrust" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -69)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_pfmfd")
+frame_progress = 0.17453
+
+[node name="LeftWing" type="Sprite2D" parent="."]
+position = Vector2(51, -2)
+texture = ExtResource("4_6tq7s")
+
+[node name="LeftCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2(51, -2)
+polygon = PackedVector2Array(10, 11, 18, 11, 21, 15, 21, 32, 20, 51, 14, 51, 13, 32, 2, 42, -10, 30, -19, 30, -21, 27, -21, 10, -19, 4, -19, -14, -10, -45, 7, -50, 8, -47, -10, -35, 8, -18, 9, -8, 12, -4, 14, 1, 14, 8)
+
+[node name="RightWing" type="Sprite2D" parent="."]
+position = Vector2(-52, -2)
+texture = ExtResource("5_x7fj0")
+
+[node name="RightCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2(-52, -2)
+polygon = PackedVector2Array(-10, 11, -18, 11, -21, 15, -21, 32, -20, 51, -14, 51, -13, 32, -2, 42, 10, 30, 19, 30, 21, 27, 21, 10, 19, 4, 19, -14, 10, -45, -7, -50, -8, -47, 10, -35, -8, -18, -9, -8, -12, -4, -14, 1, -14, 8)
+
+[node name="Hull" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5ktvf")
+
+[node name="HullCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_07fyb")

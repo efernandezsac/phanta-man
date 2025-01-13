@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://dtpwy47ey87a1"]
+
+[ext_resource type="Script" path="res://Scenes/UI/health_bar.gd" id="1_xgppw"]
+[ext_resource type="Texture2D" uid="uid://beyciaoml5gmb" path="res://assets/images/ui/Items/lifebar/cube-empty.png" id="2_kppix"]
+[ext_resource type="Texture2D" uid="uid://bl0ftse6orv3e" path="res://assets/images/ui/Items/lifebar/cube0.png" id="3_4peu6"]
+[ext_resource type="Texture2D" uid="uid://w2vjl7l42jn8" path="res://assets/images/ui/Items/health_orb/power-up-1.png" id="5_u4qip"]
+[ext_resource type="Texture2D" uid="uid://cg14qxuv0d4s8" path="res://assets/images/ui/Items/health_orb/power-up-2.png" id="6_dh575"]
+[ext_resource type="Texture2D" uid="uid://dni2ia5icwbaq" path="res://assets/images/ui/Items/health_orb/power-up-3.png" id="7_2x2ia"]
+[ext_resource type="Texture2D" uid="uid://b72l7ue3hhi7o" path="res://assets/images/ui/Items/health_orb/power-up-4.png" id="8_13cle"]
+[ext_resource type="Texture2D" uid="uid://bxtkryaa4sev0" path="res://assets/images/ui/Items/health_orb/power-up-5.png" id="9_xsaaw"]
+[ext_resource type="Texture2D" uid="uid://2bdhwrh2vgny" path="res://assets/images/ui/Items/health_orb/power-up-6.png" id="10_hxndn"]
+[ext_resource type="Texture2D" uid="uid://c7og56c6tlsww" path="res://assets/images/ui/Items/health_orb/power-up-7.png" id="11_o007q"]
+[ext_resource type="Texture2D" uid="uid://blcp1l12fouqc" path="res://assets/images/ui/Items/lifebar/cube1.png" id="11_t51s7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1anuj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_u4qip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dh575")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2x2ia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_13cle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xsaaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hxndn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_o007q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="HealthBar" type="Node2D"]
+script = ExtResource("1_xgppw")
+lifecube_full = ExtResource("11_t51s7")
+lifecube_empty = ExtResource("2_kppix")
+
+[node name="Cube0" type="Sprite2D" parent="."]
+position = Vector2(21, 21)
+texture = ExtResource("3_4peu6")
+
+[node name="HealthOrbLogo" type="AnimatedSprite2D" parent="Cube0"]
+position = Vector2(-4, -6)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_1anuj")
+autoplay = "default"
+frame_progress = 0.044326
+
+[node name="LifeCube1" type="Sprite2D" parent="."]
+position = Vector2(55, 21)
+texture = ExtResource("11_t51s7")
+
+[node name="LifeCube2" type="Sprite2D" parent="."]
+position = Vector2(89, 21)
+texture = ExtResource("11_t51s7")
+
+[node name="LifeCube3" type="Sprite2D" parent="."]
+position = Vector2(123, 21)
+texture = ExtResource("11_t51s7")
+
+[node name="CoinCube" type="Sprite2D" parent="."]
+position = Vector2(21, 55)
+texture = ExtResource("3_4peu6")
+
+[node name="CoinLabelCube" type="Sprite2D" parent="."]
+position = Vector2(55, 55)
+texture = ExtResource("3_4peu6")

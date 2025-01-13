@@ -1,0 +1,114 @@
+[gd_scene load_steps=16 format=3 uid="uid://vi74altw7tkd"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/player_death_effect.gd" id="1_kb4jv"]
+[ext_resource type="Texture2D" uid="uid://q7raip5aoob5" path="res://assets/images/characters/Player/Phanta-Man/player-death/spark_dot.png" id="2_km44p"]
+[ext_resource type="Texture2D" uid="uid://skhlb631jjsd" path="res://assets/images/characters/Player/Phanta-Man/player-death/spark_recolor.png" id="3_k5wg8"]
+[ext_resource type="AudioStream" uid="uid://b6xqj2sy54pkv" path="res://assets/audio/sfx/player_death_3.wav" id="4_76lcf"]
+
+[sub_resource type="Gradient" id="Gradient_0nfay"]
+colors = PackedColorArray(0.333333, 0.0470588, 0.368627, 1, 0.988235, 0.513726, 0.666667, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gkb64"]
+gradient = SubResource("Gradient_0nfay")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ym1nh"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 35.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_gkb64")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpcqk"]
+atlas = ExtResource("3_k5wg8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3okpu"]
+atlas = ExtResource("3_k5wg8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5owmo"]
+atlas = ExtResource("3_k5wg8")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc740"]
+atlas = ExtResource("3_k5wg8")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tewth"]
+atlas = ExtResource("3_k5wg8")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4um7"]
+atlas = ExtResource("3_k5wg8")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtx2w"]
+atlas = ExtResource("3_k5wg8")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u75cr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpcqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3okpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5owmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc740")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tewth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4um7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtx2w")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"death_effect",
+"speed": 12.0
+}]
+
+[node name="PlayerDeathEffect" type="Node2D"]
+script = ExtResource("1_kb4jv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -15)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ym1nh")
+texture = ExtResource("2_km44p")
+lifetime = 4.0
+explosiveness = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_u75cr")
+animation = &"death_effect"
+autoplay = "death_effect"
+frame = 7
+frame_progress = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="DeathSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_76lcf")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

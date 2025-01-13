@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1kti1px5ktmp"]
+
+[ext_resource type="Texture2D" uid="uid://46eb1x8p7xoh" path="res://assets/images/characters/Enemies/Bosses/Boss-Insect/alien-enemy-flying1.png" id="1_wshm7"]
+[ext_resource type="Texture2D" uid="uid://clbi5c5nk1mqa" path="res://assets/images/characters/Enemies/Bosses/Boss-Insect/alien-enemy-flying2.png" id="2_m64eg"]
+[ext_resource type="Texture2D" uid="uid://cf5kcsd35ahso" path="res://assets/images/characters/Enemies/Bosses/Boss-Insect/alien-enemy-flying3.png" id="3_v3fn3"]
+[ext_resource type="Texture2D" uid="uid://c0sk4i2iu63bc" path="res://assets/images/characters/Enemies/Bosses/Boss-Insect/alien-enemy-flying4.png" id="4_rr2tk"]
+[ext_resource type="Texture2D" uid="uid://k3lta3fr23xj" path="res://assets/images/characters/Enemies/Bosses/Boss-Insect/alien-enemy-flying5.png" id="5_a6npf"]
+[ext_resource type="Texture2D" uid="uid://bihj3g7v04wtl" path="res://assets/images/characters/Enemies/Bosses/Boss-Insect/alien-enemy-flying6.png" id="6_evc5f"]
+[ext_resource type="Texture2D" uid="uid://bqkfccioxj23y" path="res://assets/images/characters/Enemies/Bosses/Boss-Insect/alien-enemy-flying7.png" id="7_ti37y"]
+[ext_resource type="Texture2D" uid="uid://cy7iy1rrgv03" path="res://assets/images/characters/Enemies/Bosses/Boss-Insect/alien-enemy-flying8.png" id="8_kc1je"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_povut"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wshm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_m64eg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v3fn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rr2tk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a6npf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_evc5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ti37y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kc1je")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 15.0
+}]
+
+[node name="BossInsect" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_povut")
+animation = &"flying"
+frame_progress = 0.936716

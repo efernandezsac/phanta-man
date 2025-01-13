@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://c547rg4kx0i20"]
+
+[ext_resource type="Script" path="res://Scenes/UI/hud.gd" id="1_cj2ml"]
+[ext_resource type="FontFile" uid="uid://bsve0ogn0pegu" path="res://assets/fonts/dogicapixelbold.ttf" id="2_78v0k"]
+[ext_resource type="PackedScene" uid="uid://dtpwy47ey87a1" path="res://Scenes/UI/health_bar.tscn" id="3_kkiib"]
+[ext_resource type="Texture2D" uid="uid://eku3eeie8eir" path="res://assets/images/ui/Items/coin/AnimatedTexture_Coin.tres" id="3_mn17c"]
+
+[sub_resource type="GDScript" id="GDScript_csinx"]
+script/source = "extends Label
+
+func level(num):
+	$HUD
+"
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_cj2ml")
+
+[node name="CurrentLevel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -75.0
+offset_top = 22.0
+offset_right = 77.0
+offset_bottom = 45.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.802633, 0.395727, 0.819608, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.521569, 0.819608, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_78v0k")
+text = "Level Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthBar" parent="." instance=ExtResource("3_kkiib")]
+position = Vector2(8, 8)
+
+[node name="CoinSprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 58)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("3_mn17c")
+
+[node name="CoinsLabel" type="Label" parent="."]
+offset_left = 46.0
+offset_top = 48.0
+offset_right = 70.0
+offset_bottom = 69.0
+theme_override_colors/font_color = Color(0.909804, 0.109804, 0.611765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("2_78v0k")
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_csinx")

@@ -1,0 +1,405 @@
+[gd_scene load_steps=13 format=3 uid="uid://cauvhll7d4b1j"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/level_selector.gd" id="1_rsuvc"]
+[ext_resource type="FontFile" uid="uid://bsve0ogn0pegu" path="res://assets/fonts/dogicapixelbold.ttf" id="1_vctge"]
+[ext_resource type="Theme" uid="uid://d1h3quxmhj8h8" path="res://assets/pause_menu_theme.tres" id="2_7sekl"]
+[ext_resource type="Texture2D" uid="uid://bjyl2b78wys82" path="res://assets/images/ui/screenshots/screenshot_level1.png" id="2_sfcbj"]
+[ext_resource type="Texture2D" uid="uid://sb1piu2gg6yo" path="res://assets/images/ui/HUD_SELECT_LEVEL_15%.png" id="4_qe110"]
+[ext_resource type="AudioStream" uid="uid://bi1qbyd4qrkoq" path="res://assets/audio/sfx/TimeLabel.wav" id="4_tfjh4"]
+[ext_resource type="AudioStream" uid="uid://bpqoawr5w6778" path="res://assets/audio/sfx/PressSound3.wav" id="5_vf2pc"]
+[ext_resource type="AudioStream" uid="uid://30ugm4vv42og" path="res://assets/audio/sfx/HoverSound.wav" id="6_20bdi"]
+[ext_resource type="AudioStream" uid="uid://kpn7s4rx10ye" path="res://assets/audio/bgm/LevelSelector.wav" id="8_drva1"]
+
+[sub_resource type="Animation" id="Animation_y5mw6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelScreenshot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uonss"]
+resource_name = "move_selection"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelScreenshot:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0krbj"]
+_data = {
+"RESET": SubResource("Animation_y5mw6"),
+"move_selection": SubResource("Animation_uonss")
+}
+
+[node name="LevelSelector" type="CanvasLayer"]
+script = ExtResource("1_rsuvc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.239216, 0.513726, 0.701961, 1)
+
+[node name="LevelScreenshot" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(640, 360)
+texture = ExtResource("2_sfcbj")
+
+[node name="HUDBackground" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("4_qe110")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="PressSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_vf2pc")
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_20bdi")
+
+[node name="TimeLabelSfx" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_tfjh4")
+volume_db = -30.0
+
+[node name="LevelSelectorMusic" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_drva1")
+autoplay = true
+
+[node name="TitleLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 48.0
+offset_right = 135.0
+offset_bottom = 101.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.34902, 0.0352941, 0.329412, 1)
+theme_override_colors/font_shadow_color = Color(0.156863, 0.117647, 0.168627, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("1_vctge")
+text = "PHANTA MAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="TitleLabel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 64.0
+offset_top = 608.0
+offset_right = 412.0
+offset_bottom = 624.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.34902, 0.0352941, 0.329412, 1)
+theme_override_colors/font_shadow_color = Color(0.156863, 0.117647, 0.168627, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+theme_override_font_sizes/font_size = 16
+text = "Press Esc in case of exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -102.5
+offset_right = -6.0
+offset_bottom = 34.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.760784, 0.462745, 0.752941, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+text = "HH
+:
+MM
+:
+SS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RandomLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.5
+offset_top = -37.0
+offset_right = 148.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.552941, 0.34902, 0.47451, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+text = "012345678901234567890123456789"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DateLabel" type="Label" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -802.0
+offset_top = 136.0
+offset_right = -474.0
+offset_bottom = -556.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(0.760784, 0.462745, 0.752941, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+theme_override_font_sizes/font_size = 24
+text = "YYYY/MM/DD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="VFlowContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -584.0
+offset_top = -216.0
+offset_right = -140.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7sekl")
+theme_override_constants/v_separation = 10
+
+[node name="Empty" type="Label" parent="Options"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.482353, 0.290196, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+theme_override_font_sizes/font_size = 24
+text = "
+. . ."
+vertical_alignment = 1
+
+[node name="Level1Button" type="Button" parent="Options"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.988235, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0.608247, 0.989691, 1)
+theme_override_colors/font_color = Color(0.552941, 0.34902, 0.47451, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "Level_1"
+alignment = 0
+
+[node name="Empty2" type="Label" parent="Options"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.482353, 0.290196, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+theme_override_font_sizes/font_size = 24
+text = "
+. . ."
+vertical_alignment = 1
+
+[node name="Level1BossButton" type="Button" parent="Options"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.988235, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0.608247, 0.989691, 1)
+theme_override_colors/font_color = Color(0.552941, 0.34902, 0.47451, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "Level_1_Boss_Battle"
+alignment = 0
+
+[node name="Empty3" type="Label" parent="Options"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.482353, 0.290196, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+theme_override_font_sizes/font_size = 24
+text = "
+. . ."
+vertical_alignment = 1
+
+[node name="Level2Button" type="Button" parent="Options"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.988235, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0.608247, 0.989691, 1)
+theme_override_colors/font_color = Color(0.552941, 0.34902, 0.47451, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "Level_2"
+alignment = 0
+
+[node name="Empty4" type="Label" parent="Options"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.482353, 0.290196, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+theme_override_font_sizes/font_size = 24
+text = "
+. . ."
+vertical_alignment = 1
+
+[node name="Level2BossButton" type="Button" parent="Options"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.988235, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0.608247, 0.989691, 1)
+theme_override_colors/font_color = Color(0.552941, 0.34902, 0.47451, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "Level_2_Boss_Battle"
+alignment = 0
+
+[node name="OptionsEnding" type="VFlowContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 280.0
+offset_top = -128.0
+offset_right = 523.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7sekl")
+theme_override_constants/v_separation = 10
+
+[node name="Label" type="Label" parent="OptionsEnding"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.482353, 0.290196, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+theme_override_font_sizes/font_size = 24
+text = "
+. . ."
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Level3Button" type="Button" parent="OptionsEnding"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.988235, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0.608247, 0.989691, 1)
+theme_override_colors/font_color = Color(0.552941, 0.34902, 0.47451, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "Final_level"
+alignment = 2
+
+[node name="Label2" type="Label" parent="OptionsEnding"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.482353, 0.290196, 0.34902, 1)
+theme_override_colors/font_shadow_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("1_vctge")
+theme_override_font_sizes/font_size = 24
+text = "
+. . ."
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CreditsButton" type="Button" parent="OptionsEnding"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0.607843, 0.988235, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 0.608247, 0.989691, 1)
+theme_override_colors/font_color = Color(0.552941, 0.34902, 0.47451, 1)
+theme_override_colors/font_outline_color = Color(0.290196, 0.168627, 0.223529, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "Credits"
+alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0krbj")
+}
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="TimerFast" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="pressed" from="Options/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="Options/Level1BossButton" to="." method="_on_level_1_boss_button_pressed"]
+[connection signal="pressed" from="Options/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="Options/Level2BossButton" to="." method="_on_level_2_boss_button_pressed"]
+[connection signal="pressed" from="OptionsEnding/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="OptionsEnding/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerFast" to="." method="_on_timer_fast_timeout"]

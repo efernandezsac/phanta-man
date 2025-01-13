@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2hf70wyfgh8e"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/intro.gd" id="1_jb364"]
+[ext_resource type="Texture2D" uid="uid://bcb4b43pxmydb" path="res://assets/images/ui/intro1.png" id="2_kwag8"]
+[ext_resource type="Texture2D" uid="uid://btuke87v4xm1o" path="res://assets/images/ui/intro2.png" id="3_ddrm0"]
+[ext_resource type="Texture2D" uid="uid://by64asgcq1g26" path="res://assets/images/ui/Fresas_Logo.png" id="4_j7neo"]
+
+[sub_resource type="Animation" id="Animation_65nhe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FresasLogo:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProducedBy:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VideoGameBy:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8psrf"]
+resource_name = "intro"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2, 4, 5.04167, 6.05, 7.04167, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VideoGameBy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 5.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProducedBy:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FresasLogo:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2ocb"]
+_data = {
+"RESET": SubResource("Animation_65nhe"),
+"intro": SubResource("Animation_8psrf")
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_jb364")
+
+[node name="VideoGameBy" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("2_kwag8")
+
+[node name="ProducedBy" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.875)
+position = Vector2(640, 360)
+texture = ExtResource("3_ddrm0")
+
+[node name="FresasLogo" type="Sprite2D" parent="."]
+position = Vector2(643, 550)
+scale = Vector2(2, 2)
+texture = ExtResource("4_j7neo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 1301.0
+offset_bottom = 739.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q2ocb")
+}

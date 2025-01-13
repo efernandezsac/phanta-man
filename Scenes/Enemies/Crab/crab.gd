@@ -24,7 +24,19 @@ var damage_amount : int = 1
 @onready var raycast = $FloorRayCast2D # RayCast to detect ground or walls
 @onready var detection_shape = $DetectionArea/DetectionShape # Detection area for player
 
-var enemy_death_effect = preload("res://Scenes/Enemies/enemy_death_effect.tscn")
+@onready var crab_audio_player = $CrabAudioPlayer
+@onready var visibility_notifier = $VisibleOnScreenNotifier2D
+@onready var sound_timer = $SoundTimer
+
+var is_on_screen = false
+
+var enemy_death_effect = preload("res://Scenes/Effects/enemy_death_effect.tscn")
+
+# Variables para el cambio de escala
+var original_scale: Vector2
+var enlarged_scale: Vector2
+var scale_timer: float = 0.0
+var is_scale_enlarged: bool = false
 
 # Offsets for flipping raycast and detection area
 var raycast_offset: float           # Horizontal offset for the RayCast2D
@@ -34,7 +46,15 @@ func _ready():
 	# Get the initial positions of RayCast2D and CollisionShape2D
 	raycast_offset = abs(raycast.position.x)
 	detection_offset = abs(detection_shape.position.x)
-
+	
+	visibility_notifier.screen_entered.connect(_on_visible_on_screen_notifier_2d_screen_entered)
+	visibility_notifier.screen_exited.connect(_on_visible_on_screen_notifier_2d_screen_exited)
+	sound_timer.timeout.connect(_on_sound_timer_timeout)
+	sound_timer.wait_time = randf_range(3.0, 8.0) # Intervalo aleatorio entre sonidos
+	
+	original_scale = $CollisionShape2D.scale # Guardar la escala original
+	enlarged_scale = original_scale * 1.05 # Calcular la escala ampliada
+	
 func _physics_process(delta: float):
 	# Apply gravity to ensure the enemy stays grounded
 	velocity.y += get_gravity().y * delta
@@ -47,7 +67,13 @@ func _physics_process(delta: float):
 			handle_walk()
 		State.CHASE:
 			handle_chase(delta)
-
+	
+	if current_state == State.CHASE:
+		scale_timer -= delta
+		if scale_timer <= 0:
+			is_scale_enlarged = !is_scale_enlarged # Alternar la escala
+			$CollisionShape2D.scale = enlarged_scale if is_scale_enlarged else original_scale
+			scale_timer = 0.2 # Ajusta la frecuencia del cambio de escala
 	move_and_slide()
 
 func handle_idle(delta: float):
@@ -81,9 +107,11 @@ func handle_chase(delta: float):
 	var distance_x = abs(player.global_position.x - global_position.x)
 	
 	# Update movement direction and velocity towards the player
-	if distance_x > 5: # Move if not already aligned horizontally
+	if distance_x > 2: # Move if not already aligned horizontally
 		moving_left = player.global_position.x < global_position.x
 		velocity.x = -CHASE_SPEED if moving_left else CHASE_SPEED
+	elif distance_x > 0: # Pequeño movimiento si está muy cerca
+		velocity.x = -10 if moving_left else 10 # Ajusta este valor
 	else:
 		velocity.x = 0  # Stop if aligned with the player
 	
@@ -142,13 +170,37 @@ func _on_hurtbox_area_entered(area: Area2D):
 		print("Crab. Health after hit: ", health_amount)
 
 		if health_amount <= 0:
-			print("Enemy defeated!")
-			
-			# Instanciar el efecto de muerte
-			var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
-			var sprite_height = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame).get_height()
-			enemy_death_effect_instance.global_position = global_position - Vector2(0, sprite_height / 2)
-			get_parent().add_child(enemy_death_effect_instance)  # Añadir al árbol de la escena
-			
-			# Eliminar al enemigo después de instanciar el efecto
-			queue_free()
+			death() # Llamar a la función de muerte
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	is_on_screen = true
+	print("Cangrejo entró en la pantalla")
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	is_on_screen = false
+	print("Cangrejo salió de la pantalla")
+	crab_audio_player.stop() # Detener el sonido si sale de la pantalla
+
+func _on_sound_timer_timeout() -> void:
+	if is_on_screen:
+			crab_audio_player.play()
+	sound_timer.wait_time = randf_range(3.0, 8.0) # Reiniciar con un nuevo intervalo
+	sound_timer.start()
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.name != "Player":
+		death()
+
+func death():
+	print("Enemy defeated!")
+	
+	# Instanciar el efecto de muerte
+	var enemy_death_effect_instance = enemy_death_effect.instantiate() as Node2D
+	var sprite_height = sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame).get_height()
+	enemy_death_effect_instance.global_position = global_position - Vector2(0, sprite_height / 2)
+	get_parent().add_child(enemy_death_effect_instance)  # Añadir al árbol de la escena
+	
+	# Eliminar al enemigo después de instanciar el efecto
+	queue_free()

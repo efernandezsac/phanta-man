@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://cevfllih0vhdu"]
+
+[ext_resource type="Script" path="res://Scenes/Enviroment/dialog_area.gd" id="1_m8cyr"]
+[ext_resource type="Texture2D" uid="uid://cu6kb3mw67u05" path="res://assets/images/ui/Items/cubes/cubo_v2_32_no_border.png" id="2_ym2lj"]
+[ext_resource type="FontFile" uid="uid://bsve0ogn0pegu" path="res://assets/fonts/dogicapixelbold.ttf" id="3_336sv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lpv4"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0h0u"]
+size = Vector2(200, 152)
+
+[node name="DialogArea" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_m8cyr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ym2lj")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(0.698039, 0.45098, 0.85098, 1)
+theme_override_colors/font_shadow_color = Color(0.458824, 0.521569, 0.819608, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_336sv")
+theme_override_font_sizes/font_size = 24
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8lpv4")
+
+[node name="RangeArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea"]
+shape = SubResource("RectangleShape2D_q0h0u")
+debug_color = Color(0.667661, 0.510589, 9.62615e-07, 0.42)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_exited" from="RangeArea" to="." method="_on_range_area_body_exited"]

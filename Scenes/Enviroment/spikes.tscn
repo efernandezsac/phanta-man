@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqif07sqjncuw"]
+
+[ext_resource type="Script" path="res://Scenes/Enviroment/spikes.gd" id="1_voipc"]
+[ext_resource type="Texture2D" uid="uid://biya6c66uoojk" path="res://assets/images/tileset/spikes_1_on.png" id="2_74n5p"]
+[ext_resource type="Texture2D" uid="uid://bh122sfvf37jt" path="res://assets/images/tileset/spikes_0_off.png" id="3_5ff4c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ayyw"]
+size = Vector2(12, 9)
+
+[node name="Spikes" type="Node2D"]
+script = ExtResource("1_voipc")
+textura_on = ExtResource("2_74n5p")
+textura_off = ExtResource("3_5ff4c")
+
+[node name="Area2D" type="Area2D" parent="." groups=["EnemyAttack"]]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_5ayyw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("3_5ff4c")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

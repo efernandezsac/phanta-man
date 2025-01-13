@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://byrpici0oxa83"]
+
+[ext_resource type="Texture2D" uid="uid://ctwasiabmy2aw" path="res://assets/images/tileset/fallingblock.png" id="1_u7im4"]
+[ext_resource type="Script" path="res://Scenes/Enviroment/falling_block.gd" id="1_yfruw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyf4h"]
+size = Vector2(30, 32)
+
+[node name="FallingBlock" type="RigidBody2D"]
+collision_layer = 64
+collision_mask = 65
+script = ExtResource("1_yfruw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_u7im4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_iyf4h")
+
+[node name="LifespanTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="LifespanTimer" to="." method="_on_lifespan_timer_timeout"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://btjepbp454f6g"]
+
+[ext_resource type="Script" path="res://Scenes/Enviroment/falling_block_spawn_area.gd" id="1_086x2"]
+[ext_resource type="PackedScene" uid="uid://byrpici0oxa83" path="res://Scenes/Enviroment/falling_block.tscn" id="2_m6kfg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njrdb"]
+size = Vector2(1080, 30)
+
+[node name="FallingBlockSpawnArea" type="Node2D"]
+script = ExtResource("1_086x2")
+block_scene = ExtResource("2_m6kfg")
+
+[node name="SpawnArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_njrdb")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

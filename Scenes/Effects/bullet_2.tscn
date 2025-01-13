@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://dydpe4x2ph802"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/bullet_2.gd" id="1_xhrr3"]
+[ext_resource type="Texture2D" uid="uid://bwl5bnp7bguaf" path="res://assets/images/fx/bullet-2/enemy-bullet.png" id="2_uwtcv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bnaa"]
+atlas = ExtResource("2_uwtcv")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfcoa"]
+atlas = ExtResource("2_uwtcv")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q8s0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bnaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfcoa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rudt3"]
+radius = 3.0
+
+[sub_resource type="Gradient" id="Gradient_w6t2j"]
+offsets = PackedFloat32Array(0, 0.0649351, 0.393939, 0.792208)
+colors = PackedColorArray(1, 0.968627, 0.811765, 1, 0.94902, 0.647059, 0.247059, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bpphm"]
+gradient = SubResource("Gradient_w6t2j")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Bullet2" type="Area2D"]
+script = ExtResource("1_xhrr3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q8s0w")
+frame_progress = 0.119751
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rudt3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 1.5
+texture = SubResource("GradientTexture2D_bpphm")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

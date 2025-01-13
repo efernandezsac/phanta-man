@@ -1,0 +1,429 @@
+[gd_scene load_steps=57 format=3 uid="uid://bra5e8go22nk8"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_viuap"]
+[ext_resource type="Shader" uid="uid://75hqog5josv6" path="res://assets/shaders/player_hit_flash_shader.tres" id="2_xvdcj"]
+[ext_resource type="Texture2D" uid="uid://bllithsw1tx2l" path="res://assets/images/characters/Player/Phanta-Man/player-air-shoot/player-air_shoot-1.png" id="3_m6qgg"]
+[ext_resource type="Texture2D" uid="uid://c2y52ei7a8xfw" path="res://assets/images/characters/Player/Phanta-Man/player-air-shoot/player-air_shoot-2.png" id="4_dx6xl"]
+[ext_resource type="Texture2D" uid="uid://baa6km3txvt54" path="res://assets/images/characters/Player/Phanta-Man/player-air-shoot/player-air_shoot-3.png" id="5_000sm"]
+[ext_resource type="Texture2D" uid="uid://8movt3kumnc" path="res://assets/images/characters/Player/Phanta-Man/player-jump/player-jump-2.png" id="6_805c5"]
+[ext_resource type="Texture2D" uid="uid://b7wep6xssn1yb" path="res://assets/images/characters/Player/Phanta-Man/player-jump/player-jump-3.png" id="7_oidgg"]
+[ext_resource type="Texture2D" uid="uid://cmhsptg7frby6" path="res://assets/images/characters/Player/Phanta-Man/player-jump/player-jump-4.png" id="8_gapsh"]
+[ext_resource type="Texture2D" uid="uid://dswh27384sktm" path="res://assets/images/characters/Player/Phanta-Man/player-jump/player-jump-5.png" id="9_04gi7"]
+[ext_resource type="Texture2D" uid="uid://lhwjbsn2k80g" path="res://assets/images/characters/Player/Phanta-Man/player-jump/player-jump-6.png" id="10_ssybv"]
+[ext_resource type="Texture2D" uid="uid://b74cshcf5b8y0" path="res://assets/images/characters/Player/Phanta-Man/player-duck/player-duck.png" id="11_du1fi"]
+[ext_resource type="Texture2D" uid="uid://cvgvgisgdfsq3" path="res://assets/images/characters/Player/Phanta-Man/player-hurt/player-hurt-1.png" id="12_uuj2u"]
+[ext_resource type="Texture2D" uid="uid://mwfdjlh2bp70" path="res://assets/images/characters/Player/Phanta-Man/player-hurt/player-hurt-2.png" id="13_ty613"]
+[ext_resource type="Texture2D" uid="uid://bukr4hkvtr6mj" path="res://assets/images/characters/Player/Phanta-Man/player-idle/player-idle-1.png" id="14_d7vtc"]
+[ext_resource type="Texture2D" uid="uid://dxp2qpi1vtov0" path="res://assets/images/characters/Player/Phanta-Man/player-idle/player-idle-2.png" id="15_c1m72"]
+[ext_resource type="Texture2D" uid="uid://cuhsjfednr0ab" path="res://assets/images/characters/Player/Phanta-Man/player-idle/player-idle-3.png" id="16_dmwg5"]
+[ext_resource type="Texture2D" uid="uid://bimwq7n1ilgnn" path="res://assets/images/characters/Player/Phanta-Man/player-idle/player-idle-4.png" id="17_7mlum"]
+[ext_resource type="Texture2D" uid="uid://boy8sj6uj1i66" path="res://assets/images/characters/Player/Phanta-Man/player-jump/player-jump-1.png" id="18_rsv5p"]
+[ext_resource type="Texture2D" uid="uid://boo2b126y8csk" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-1.png" id="19_j0am0"]
+[ext_resource type="Texture2D" uid="uid://dqoa4vnc03ter" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-3.png" id="20_a5txq"]
+[ext_resource type="Texture2D" uid="uid://sayp0dag5lpm" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-2.png" id="21_esjci"]
+[ext_resource type="Texture2D" uid="uid://b0jlq0mpwjd2h" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-4.png" id="22_085hg"]
+[ext_resource type="Texture2D" uid="uid://c8nqisajic2ft" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-5.png" id="23_773se"]
+[ext_resource type="Texture2D" uid="uid://bbn7xcb2sb1ji" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-7.png" id="24_86ya8"]
+[ext_resource type="Texture2D" uid="uid://bbtu5acwsvrhb" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-8.png" id="25_6owta"]
+[ext_resource type="Texture2D" uid="uid://iob10qx8up41" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-9.png" id="26_py07l"]
+[ext_resource type="Texture2D" uid="uid://dk88fs2elruhu" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-10.png" id="27_uy0kx"]
+[ext_resource type="Texture2D" uid="uid://dvuevva2c448d" path="res://assets/images/characters/Player/Phanta-Man/player-run/player-run-6.png" id="28_6obc1"]
+[ext_resource type="Texture2D" uid="uid://bm0h56ug7l4q5" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-1.png" id="29_aoxmq"]
+[ext_resource type="Texture2D" uid="uid://dxj87wnqvrepj" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-2.png" id="30_tmh2w"]
+[ext_resource type="Texture2D" uid="uid://btlnxdcuov7vn" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-3.png" id="31_ys6wl"]
+[ext_resource type="Texture2D" uid="uid://b72kxklnctfxk" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-4.png" id="32_ex752"]
+[ext_resource type="Texture2D" uid="uid://bwjrtae81d05c" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-5.png" id="33_cf3ip"]
+[ext_resource type="Texture2D" uid="uid://dr51b6jdbysqc" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-6.png" id="34_poy03"]
+[ext_resource type="Texture2D" uid="uid://banmshag815ya" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-7.png" id="35_650e3"]
+[ext_resource type="Texture2D" uid="uid://8qs5hyayxnye" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-8.png" id="36_h5xrv"]
+[ext_resource type="Texture2D" uid="uid://mnjkj1x6qnnx" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-9.png" id="37_gnp27"]
+[ext_resource type="Texture2D" uid="uid://cbgsp8ystgfw1" path="res://assets/images/characters/Player/Phanta-Man/player-run-shot/player-run-shot-10.png" id="38_16824"]
+[ext_resource type="Texture2D" uid="uid://dw6eo0meioien" path="res://assets/images/characters/Player/Phanta-Man/player-stand/player-stand-1.png" id="39_rh8r5"]
+[ext_resource type="Texture2D" uid="uid://bhoiuq1b0xqig" path="res://assets/images/characters/Player/Phanta-Man/player-stand/player-stand-2.png" id="40_6jdxd"]
+[ext_resource type="Texture2D" uid="uid://k6r4xwel4coy" path="res://assets/images/characters/Player/Phanta-Man/player-stand/player-stand-3.png" id="41_brgbb"]
+[ext_resource type="AudioStream" uid="uid://2l8rt26a7hps" path="res://assets/audio/sfx/jump.wav" id="42_fttn8"]
+[ext_resource type="AudioStream" uid="uid://cb8iuxr4iihjv" path="res://assets/audio/sfx/DoubleJump.wav" id="43_vc2v7"]
+[ext_resource type="AudioStream" uid="uid://ccu6qvhkpovfs" path="res://assets/audio/sfx/shoot.wav" id="44_6dsf3"]
+[ext_resource type="AudioStream" uid="uid://ddj35f32ise2i" path="res://assets/audio/sfx/player_hithurt.wav" id="45_bvhip"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxfpr"]
+shader = ExtResource("2_xvdcj")
+shader_parameter/enable = false
+shader_parameter/hit_colour = Color(0.745098, 0.019608, 0.133333, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jtmct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_m6qgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dx6xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_000sm")
+}],
+"loop": false,
+"name": &"air_shoot",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_805c5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_oidgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gapsh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_04gi7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ssybv")
+}],
+"loop": true,
+"name": &"double_jump",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_du1fi")
+}],
+"loop": true,
+"name": &"duck_shoot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ssybv")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_uuj2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ty613")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_d7vtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_c1m72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_dmwg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_7mlum")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_rsv5p")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_uuj2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ty613")
+}],
+"loop": true,
+"name": &"knockback",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_j0am0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_a5txq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_esjci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_085hg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_773se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_86ya8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_6owta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_py07l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_uy0kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_6obc1")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_aoxmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_tmh2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ys6wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_ex752")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_cf3ip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_poy03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_650e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_h5xrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_gnp27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_16824")
+}],
+"loop": true,
+"name": &"run_shoot",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_rh8r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_6jdxd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_brgbb")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u6f51"]
+radius = 7.0
+height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pqw5f"]
+radius = 7.0
+height = 38.0
+
+[sub_resource type="Animation" id="Animation_d6j5t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lwlan"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_54qtt"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vt4pw"]
+_data = {
+"RESET": SubResource("Animation_d6j5t"),
+"hit": SubResource("Animation_lwlan"),
+"spawn": SubResource("Animation_54qtt")
+}
+
+[sub_resource type="Gradient" id="Gradient_xv5tj"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.242424, 0.770563)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6mgg5"]
+gradient = SubResource("Gradient_xv5tj")
+width = 300
+height = 200
+fill = 1
+fill_from = Vector2(0.345566, 0.513761)
+fill_to = Vector2(0, 0.720183)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c6gea"]
+radius = 1.0
+height = 20.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+modulate = Color(1, 1, 1, 0)
+collision_layer = 2
+collision_mask = 69
+script = ExtResource("1_viuap")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_bxfpr")
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_jtmct")
+animation = &"air_shoot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -19)
+shape = SubResource("CapsuleShape2D_u6f51")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(19, -27)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+position = Vector2(0, -19)
+collision_layer = 2
+collision_mask = 12
+
+[node name="HurtboxCollision" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
+scale = Vector2(1.01, 1.01)
+shape = SubResource("CapsuleShape2D_pqw5f")
+debug_color = Color(0.840427, 0.220164, 0.774617, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vt4pw")
+}
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -19)
+texture = SubResource("GradientTexture2D_6mgg5")
+texture_scale = 2.0
+
+[node name="Lantern" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(168, -26)
+texture = SubResource("GradientTexture2D_6mgg5")
+texture_scale = 2.0
+
+[node name="RayCastUpLeft" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(-7, -38)
+target_position = Vector2(0, -15)
+
+[node name="RayCastUpRight" type="RayCast2D" parent="."]
+visible = false
+position = Vector2(7, -38)
+target_position = Vector2(0, -15)
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+
+[node name="DoubleJumpTimer" type="Timer" parent="."]
+
+[node name="TrappedArea" type="Area2D" parent="."]
+position = Vector2(0, -19)
+collision_layer = 2
+collision_mask = 9
+
+[node name="TrappedCollision" type="CollisionShape2D" parent="TrappedArea"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_c6gea")
+debug_color = Color(0.58744, 0.54892, 1.92523e-07, 0.42)
+
+[node name="Sfx" type="Node" parent="."]
+
+[node name="JumpSfx" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("42_fttn8")
+
+[node name="DoubleJumpSfx" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("43_vc2v7")
+
+[node name="ShootSfx" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("44_6dsf3")
+
+[node name="HithurtSfx" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("45_bvhip")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
+[connection signal="body_entered" from="TrappedArea" to="." method="_on_trapped_area_body_entered"]

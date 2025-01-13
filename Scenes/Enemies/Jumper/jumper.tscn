@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dugw16gdrdi23"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Jumper/jumper.gd" id="1_7t00s"]
-[ext_resource type="Texture2D" uid="uid://b6ekokvf50sqc" path="res://Assets/Characters/Enemies/Jumper/jumper-idle/jumper-idle-1.png" id="1_s7v3m"]
-[ext_resource type="Texture2D" uid="uid://dgxthq054u4ml" path="res://Assets/Characters/Enemies/Jumper/jumper-idle/jumper-idle-2.png" id="2_a2ym8"]
-[ext_resource type="Texture2D" uid="uid://bdjr52031a1ok" path="res://Assets/Characters/Enemies/Jumper/jumper-idle/jumper-idle-3.png" id="3_llr57"]
-[ext_resource type="Texture2D" uid="uid://bicavsl31i45t" path="res://Assets/Characters/Enemies/Jumper/jumper-idle/jumper-idle-4.png" id="4_w6om1"]
-[ext_resource type="Texture2D" uid="uid://egqfw1srb20a" path="res://Assets/Characters/Enemies/Jumper/jumper-jump/jumper-jump.png" id="5_vh608"]
+[ext_resource type="Texture2D" uid="uid://b6ekokvf50sqc" path="res://assets/images/characters/Enemies/Jumper/jumper-idle/jumper-idle-1.png" id="1_s7v3m"]
+[ext_resource type="Texture2D" uid="uid://dgxthq054u4ml" path="res://assets/images/characters/Enemies/Jumper/jumper-idle/jumper-idle-2.png" id="2_a2ym8"]
+[ext_resource type="Texture2D" uid="uid://bdjr52031a1ok" path="res://assets/images/characters/Enemies/Jumper/jumper-idle/jumper-idle-3.png" id="3_llr57"]
+[ext_resource type="Texture2D" uid="uid://bicavsl31i45t" path="res://assets/images/characters/Enemies/Jumper/jumper-idle/jumper-idle-4.png" id="4_w6om1"]
+[ext_resource type="Texture2D" uid="uid://egqfw1srb20a" path="res://assets/images/characters/Enemies/Jumper/jumper-jump/jumper-jump.png" id="5_vh608"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_56xit"]
 animations = [{
@@ -35,8 +35,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_undw0"]
-size = Vector2(32, 24)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k5ycv"]
+radius = 12.0
+height = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hd4h2"]
 size = Vector2(100, 35)
@@ -52,13 +53,16 @@ frame_progress = 0.560344
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)
-shape = SubResource("RectangleShape2D_undw0")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k5ycv")
 
 [node name="FloorRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-15, -13)
 target_position = Vector2(0, 20)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-50, -17.5)

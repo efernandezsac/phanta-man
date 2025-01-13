@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch5b887un2kjs"]
+
+[ext_resource type="Script" path="res://Scenes/Enviroment/spikes_row.gd" id="1_qdimg"]
+
+[node name="SpikesRow" type="Node2D"]
+script = ExtResource("1_qdimg")

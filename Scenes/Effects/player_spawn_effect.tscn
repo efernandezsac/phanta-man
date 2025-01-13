@@ -1,0 +1,104 @@
+[gd_scene load_steps=19 format=3 uid="uid://bhtoo6l0aq8ov"]
+
+[ext_resource type="Script" path="res://Scenes/Effects/player_spawn_effect.gd" id="1_2i7dk"]
+[ext_resource type="Texture2D" uid="uid://q7raip5aoob5" path="res://assets/images/characters/Player/Phanta-Man/player-death/spark_dot.png" id="2_6cskp"]
+[ext_resource type="Texture2D" uid="uid://c1iwsmfxhpmf0" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt1.png" id="3_ypw4c"]
+[ext_resource type="Texture2D" uid="uid://bl5nujqm37fhv" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt2.png" id="4_wb8g2"]
+[ext_resource type="Texture2D" uid="uid://cn7vc2brws8pg" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt3.png" id="5_0ykt3"]
+[ext_resource type="Texture2D" uid="uid://uxhprogoi25k" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt4.png" id="6_y1qpc"]
+[ext_resource type="Texture2D" uid="uid://beopwmvyuen28" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt5.png" id="7_x2dep"]
+[ext_resource type="Texture2D" uid="uid://cvphscc7l7ha4" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt6.png" id="8_2gtqt"]
+[ext_resource type="Texture2D" uid="uid://d1cawg4xav5a6" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt7.png" id="9_dh4tl"]
+[ext_resource type="Texture2D" uid="uid://dctji0ys2kfux" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt8.png" id="10_jcigo"]
+[ext_resource type="Texture2D" uid="uid://dra5a23rjsn2t" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt9.png" id="11_rppmw"]
+[ext_resource type="Texture2D" uid="uid://clc1bq6jykbni" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt10.png" id="12_o3t84"]
+[ext_resource type="Texture2D" uid="uid://bxsvsmf2hr215" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt11.png" id="13_1qii4"]
+[ext_resource type="Texture2D" uid="uid://cit6w5vlpmvwn" path="res://assets/images/characters/Player/Phanta-Man/player-spawn/Dark-Bolt12.png" id="14_c56xm"]
+
+[sub_resource type="Gradient" id="Gradient_0nfay"]
+colors = PackedColorArray(0.333333, 0.0470588, 0.368627, 1, 0.988235, 0.513726, 0.666667, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gkb64"]
+gradient = SubResource("Gradient_0nfay")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ym1nh"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 35.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_gkb64")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u75cr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ypw4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wb8g2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0ykt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y1qpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_x2dep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2gtqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dh4tl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jcigo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rppmw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_o3t84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1qii4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_c56xm")
+}],
+"loop": false,
+"name": &"spawn_effect",
+"speed": 18.0
+}]
+
+[node name="PlayerSpawnEffect" type="Node2D"]
+script = ExtResource("1_2i7dk")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -15)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_ym1nh")
+texture = ExtResource("2_6cskp")
+lifetime = 5.0
+explosiveness = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -44)
+sprite_frames = SubResource("SpriteFrames_u75cr")
+animation = &"spawn_effect"
+autoplay = "spawn_effect"
+frame = 11
+frame_progress = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

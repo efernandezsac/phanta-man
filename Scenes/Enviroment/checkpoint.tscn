@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://2npb1isfpn5n"]
+
+[ext_resource type="Script" path="res://Scenes/Enviroment/checkpoint.gd" id="1_gt1cd"]
+[ext_resource type="AudioStream" uid="uid://gq5sh4u2u46n" path="res://assets/audio/sfx/HealthOrb.wav" id="2_svbj0"]
+[ext_resource type="Texture2D" uid="uid://b6p3wcqbiabpv" path="res://assets/images/fx/slash-circular/_0000_Layer-1.png" id="3_8naxu"]
+[ext_resource type="Texture2D" uid="uid://xd405skksccd" path="res://assets/images/fx/slash-circular/_0001_Layer-2.png" id="4_7pn43"]
+[ext_resource type="Texture2D" uid="uid://cm1wyn1n1p18l" path="res://assets/images/fx/slash-circular/_0002_Layer-3.png" id="5_6sqhl"]
+[ext_resource type="Texture2D" uid="uid://bc01uwfn3plbo" path="res://assets/images/fx/slash-circular/_0003_Layer-4.png" id="6_oy3bw"]
+[ext_resource type="Texture2D" uid="uid://7hvfglrjrlw1" path="res://assets/images/fx/slash-circular/_0004_Layer-5.png" id="7_ibkk4"]
+[ext_resource type="Texture2D" uid="uid://eyf24j06ahwy" path="res://assets/images/fx/slash-circular/_0005_Layer-6.png" id="8_rcoy0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l742"]
+size = Vector2(50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vcrr0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8naxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7pn43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6sqhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oy3bw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ibkk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rcoy0")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Checkpoint" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_gt1cd")
+speech_sound = ExtResource("2_svbj0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_3l742")
+debug_color = Color(0, 0.7, 0.0307527, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -25)
+sprite_frames = SubResource("SpriteFrames_vcrr0")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

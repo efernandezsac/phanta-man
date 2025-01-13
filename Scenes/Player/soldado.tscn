@@ -1,13 +1,13 @@
 [gd_scene load_steps=35 format=3 uid="uid://bvs2k2xj28ga3"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_jtt5o"]
-[ext_resource type="Texture2D" uid="uid://gw8j2pc63s3k" path="res://Assets/Characters/Player/Gunner_Black/Gunner_Black_Death.png" id="2_66t4h"]
-[ext_resource type="Texture2D" uid="uid://bym6mn4juvrpg" path="res://Assets/Characters/Player/Gunner_Black/Gunner_Black_Idle.png" id="2_hdslg"]
-[ext_resource type="Texture2D" uid="uid://68tkaa5vbg21" path="res://Assets/Characters/Player/Gunner_Black/Gunner_Black_Jump.png" id="3_ao33p"]
-[ext_resource type="Texture2D" uid="uid://bxc3pp211ekj1" path="res://Assets/Characters/Player/Gunner_Black/Gunner_Black_Run.png" id="4_64eo0"]
-[ext_resource type="AudioStream" uid="uid://2l8rt26a7hps" path="res://Sound/Sfx/jump.wav" id="5_xb3a7"]
-[ext_resource type="AudioStream" uid="uid://cb8iuxr4iihjv" path="res://Sound/Sfx/DoubleJump.wav" id="6_4nnhq"]
-[ext_resource type="Texture2D" uid="uid://cnabu4fiuhipk" path="res://Assets/Characters/Player/Gunner_Black/Gunner_Black_Crouch.png" id="6_tm6nt"]
+[ext_resource type="Texture2D" uid="uid://gw8j2pc63s3k" path="res://assets/images/characters/Player/Gunner_Black/Gunner_Black_Death.png" id="2_66t4h"]
+[ext_resource type="Texture2D" uid="uid://bym6mn4juvrpg" path="res://assets/images/characters/Player/Gunner_Black/Gunner_Black_Idle.png" id="2_hdslg"]
+[ext_resource type="Texture2D" uid="uid://68tkaa5vbg21" path="res://assets/images/characters/Player/Gunner_Black/Gunner_Black_Jump.png" id="3_ao33p"]
+[ext_resource type="Texture2D" uid="uid://bxc3pp211ekj1" path="res://assets/images/characters/Player/Gunner_Black/Gunner_Black_Run.png" id="4_64eo0"]
+[ext_resource type="AudioStream" uid="uid://2l8rt26a7hps" path="res://assets/audio/sfx/jump.wav" id="5_xb3a7"]
+[ext_resource type="AudioStream" uid="uid://cb8iuxr4iihjv" path="res://assets/audio/sfx/DoubleJump.wav" id="6_4nnhq"]
+[ext_resource type="Texture2D" uid="uid://cnabu4fiuhipk" path="res://assets/images/characters/Player/Gunner_Black/Gunner_Black_Crouch.png" id="6_tm6nt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6kmuw"]
 atlas = ExtResource("2_66t4h")

@@ -1,0 +1,23 @@
+[gd_resource type="AnimatedTexture" load_steps=7 format=3 uid="uid://eku3eeie8eir"]
+
+[ext_resource type="Texture2D" uid="uid://cia7cldu8ljiu" path="res://assets/images/ui/Items/coin/Coin1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://pmg0lsfsxn1u" path="res://assets/images/ui/Items/coin/Coin2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://b6bjxdo0towsj" path="res://assets/images/ui/Items/coin/Coin3.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c34de45f0lea1" path="res://assets/images/ui/Items/coin/Coin4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://gyjccef6x6u2" path="res://assets/images/ui/Items/coin/Coin5.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://tdox2ewqnx70" path="res://assets/images/ui/Items/coin/Coin6.png" id="6"]
+
+[resource]
+frames = 6
+frame_0/texture = ExtResource("1")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("2")
+frame_1/duration = 0.1
+frame_2/texture = ExtResource("3")
+frame_2/duration = 0.1
+frame_3/texture = ExtResource("4")
+frame_3/duration = 0.1
+frame_4/texture = ExtResource("5")
+frame_4/duration = 0.1
+frame_5/texture = ExtResource("6")
+frame_5/duration = 0.1

@@ -1,14 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://dm8ibs0atnfab"]
+[gd_scene load_steps=15 format=3 uid="uid://dm8ibs0atnfab"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Crab/crab.gd" id="1_75sii"]
-[ext_resource type="Texture2D" uid="uid://chb0wm50fyjuo" path="res://Assets/Characters/Enemies/Crab/crab-idle/crab-idle-1.png" id="2_e1oa1"]
-[ext_resource type="Texture2D" uid="uid://crt8sxqetukoj" path="res://Assets/Characters/Enemies/Crab/crab-idle/crab-idle-2.png" id="3_wejqo"]
-[ext_resource type="Texture2D" uid="uid://b5sly4auwdhsj" path="res://Assets/Characters/Enemies/Crab/crab-idle/crab-idle-3.png" id="4_ysaxb"]
-[ext_resource type="Texture2D" uid="uid://bkcvsocqhct12" path="res://Assets/Characters/Enemies/Crab/crab-idle/crab-idle-4.png" id="5_r6iek"]
-[ext_resource type="Texture2D" uid="uid://d2yxnn2dkoisf" path="res://Assets/Characters/Enemies/Crab/crab-walk/crab-walk-1.png" id="6_mct6b"]
-[ext_resource type="Texture2D" uid="uid://degn4e2gumy31" path="res://Assets/Characters/Enemies/Crab/crab-walk/crab-walk-2.png" id="7_0ay56"]
-[ext_resource type="Texture2D" uid="uid://ba1oxmvxvyxsg" path="res://Assets/Characters/Enemies/Crab/crab-walk/crab-walk-3.png" id="8_ns6hc"]
-[ext_resource type="Texture2D" uid="uid://dgbdbtib3qe52" path="res://Assets/Characters/Enemies/Crab/crab-walk/crab-walk-4.png" id="9_uaa8j"]
+[ext_resource type="Texture2D" uid="uid://chb0wm50fyjuo" path="res://assets/images/characters/Enemies/Crab/crab-idle/crab-idle-1.png" id="2_e1oa1"]
+[ext_resource type="Texture2D" uid="uid://crt8sxqetukoj" path="res://assets/images/characters/Enemies/Crab/crab-idle/crab-idle-2.png" id="3_wejqo"]
+[ext_resource type="Texture2D" uid="uid://b5sly4auwdhsj" path="res://assets/images/characters/Enemies/Crab/crab-idle/crab-idle-3.png" id="4_ysaxb"]
+[ext_resource type="Texture2D" uid="uid://bkcvsocqhct12" path="res://assets/images/characters/Enemies/Crab/crab-idle/crab-idle-4.png" id="5_r6iek"]
+[ext_resource type="Texture2D" uid="uid://d2yxnn2dkoisf" path="res://assets/images/characters/Enemies/Crab/crab-walk/crab-walk-1.png" id="6_mct6b"]
+[ext_resource type="Texture2D" uid="uid://degn4e2gumy31" path="res://assets/images/characters/Enemies/Crab/crab-walk/crab-walk-2.png" id="7_0ay56"]
+[ext_resource type="Texture2D" uid="uid://ba1oxmvxvyxsg" path="res://assets/images/characters/Enemies/Crab/crab-walk/crab-walk-3.png" id="8_ns6hc"]
+[ext_resource type="Texture2D" uid="uid://dgbdbtib3qe52" path="res://assets/images/characters/Enemies/Crab/crab-walk/crab-walk-4.png" id="9_uaa8j"]
+[ext_resource type="AudioStream" uid="uid://5f6s0c07vkgu" path="res://assets/audio/sfx/crab-noise.wav" id="10_cxhbn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n167p"]
 animations = [{
@@ -56,13 +57,13 @@ animations = [{
 radius = 14.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va13g"]
-size = Vector2(100, 35)
+size = Vector2(150, 36)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ixxcl"]
 radius = 14.0357
 
 [node name="Crab" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 7
 script = ExtResource("1_75sii")
 
@@ -78,25 +79,42 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="FloorRayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-15, -13)
-target_position = Vector2(0, 20)
+target_position = Vector2(0, 40)
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-50, -17.5)
+position = Vector2(-42, -18)
 shape = SubResource("RectangleShape2D_va13g")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." groups=["EnemyAttack"]]
 position = Vector2(0, -13)
 collision_layer = 4
-collision_mask = 2
+collision_mask = 10
 
 [node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_ixxcl")
 debug_color = Color(0.839216, 0.219608, 0.776471, 0.419608)
 
+[node name="CrabAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_cxhbn")
+volume_db = -5.0
+autoplay = true
+max_distance = 300.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -13)
+scale = Vector2(1.4, 1.4)
+
+[node name="SoundTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="SoundTimer" to="." method="_on_sound_timer_timeout"]

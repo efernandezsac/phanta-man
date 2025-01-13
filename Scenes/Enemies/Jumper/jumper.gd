@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Constants for movement
 const JUMP_FORCE = -400.0     # Vertical jump force (controls jump height)
-const JUMP_SPEED = 150.0      # Horizontal jump speed during jumps
+const JUMP_SPEED = 120.0      # Horizontal jump speed during jumps
 const IDLE_TIME = 1.0         # Time to stay idle between jumps
 const CHASE_SPEED = 150.0     # Horizontal speed when chasing the player
 const CHASE_TIMEOUT = 3.0     # Time to forget the player after losing detection

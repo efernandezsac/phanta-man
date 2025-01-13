@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://7ybb8y8yuh4g"]
 
-[ext_resource type="Texture2D" uid="uid://eku3eeie8eir" path="res://Assets/Items/coin/AnimatedTexture_Coin.tres" id="1_etexx"]
+[ext_resource type="Texture2D" uid="uid://eku3eeie8eir" path="res://assets/images/ui/Items/coin/AnimatedTexture_Coin.tres" id="1_etexx"]
 [ext_resource type="Script" path="res://Scenes/Collectibles/coin.gd" id="1_qj3gv"]
-[ext_resource type="AudioStream" uid="uid://bb1eiiyebguec" path="res://Sound/Sfx/coin.wav" id="3_3twkk"]
+[ext_resource type="AudioStream" uid="uid://bb1eiiyebguec" path="res://assets/audio/sfx/coin.wav" id="3_3twkk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5o1qq"]
 radius = 4.0
@@ -34,6 +34,7 @@ shape = SubResource("CircleShape2D_5o1qq")
 stream = ExtResource("3_3twkk")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 range_layer_min = -100
 texture = SubResource("GradientTexture2D_y6hmh")
 

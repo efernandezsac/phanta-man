@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2cjsqlr3aevt"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Vulture/vulture.gd" id="1_dn2qp"]
+[ext_resource type="Texture2D" uid="uid://b4mckp46ip82b" path="res://assets/images/characters/Enemies/Vulture/Vulture-flying/vulture1.png" id="2_dbvh6"]
+[ext_resource type="Texture2D" uid="uid://6i81o6jsx740" path="res://assets/images/characters/Enemies/Vulture/Vulture-flying/vulture2.png" id="3_j3lx1"]
+[ext_resource type="Texture2D" uid="uid://bnnpq0j278mhm" path="res://assets/images/characters/Enemies/Vulture/Vulture-flying/vulture3.png" id="4_2av8k"]
+[ext_resource type="Texture2D" uid="uid://y6cqe4wiqim2" path="res://assets/images/characters/Enemies/Vulture/Vulture-flying/vulture4.png" id="5_w1g4v"]
+[ext_resource type="Texture2D" uid="uid://dc6rf7hportrk" path="res://assets/images/characters/Enemies/Vulture/Vulture-Idle/vulture-idle1.png" id="6_3mc0b"]
+[ext_resource type="Texture2D" uid="uid://b81kgegvlmvhr" path="res://assets/images/characters/Enemies/Vulture/Vulture-Idle/vulture-idle2.png" id="7_7j5y8"]
+[ext_resource type="Texture2D" uid="uid://bvukqknbkfbue" path="res://assets/images/characters/Enemies/Vulture/Vulture-Idle/vulture-idle3.png" id="8_3vivi"]
+[ext_resource type="Texture2D" uid="uid://1eq07doq472o" path="res://assets/images/characters/Enemies/Vulture/Vulture-Idle/vulture-idle4.png" id="9_70knn"]
+[ext_resource type="AudioStream" uid="uid://h3iwdq2rn1lb" path="res://assets/audio/sfx/vulture_hitted.wav" id="10_402j8"]
+[ext_resource type="AudioStream" uid="uid://tsgik4j5qc2a" path="res://assets/audio/sfx/vulture_death.wav" id="11_eqfwf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vo707"]
+radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x313y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dbvh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j3lx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2av8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w1g4v")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_3mc0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7j5y8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3vivi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_70knn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7d6n"]
+radius = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0h7ma"]
+size = Vector2(180, 120)
+
+[node name="Vulture" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 0
+collision_mask = 6
+script = ExtResource("1_dn2qp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_vo707")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18)
+sprite_frames = SubResource("SpriteFrames_x313y")
+animation = &"flying"
+autoplay = "idle"
+frame_progress = 0.533144
+
+[node name="HurtboxArea" type="Area2D" parent="." groups=["EnemyAttack"]]
+position = Vector2(0, -15)
+collision_layer = 4
+collision_mask = 2
+
+[node name="Hurtbox" type="CollisionShape2D" parent="HurtboxArea"]
+shape = SubResource("CircleShape2D_p7d6n")
+debug_color = Color(0.839216, 0.219608, 0.776471, 0.419608)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(90, 30)
+shape = SubResource("RectangleShape2D_0h7ma")
+
+[node name="Sfx" type="Node" parent="."]
+
+[node name="HittedSfx" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("10_402j8")
+
+[node name="DeathSfx" type="AudioStreamPlayer" parent="Sfx"]
+stream = ExtResource("11_eqfwf")
+
+[connection signal="area_entered" from="HurtboxArea" to="." method="_on_hurtbox_area_area_entered"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

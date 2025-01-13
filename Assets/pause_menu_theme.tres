@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://d1h3quxmhj8h8"]
+
+[ext_resource type="FontFile" uid="uid://bsve0ogn0pegu" path="res://assets/fonts/dogicapixelbold.ttf" id="1_dbubc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f3x8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydqg1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbpx6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uqwq5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymoqt"]
+bg_color = Color(0.294118, 0.65098, 0.803922, 0.627451)
+border_width_left = 10
+border_width_top = 5
+border_width_right = 10
+border_width_bottom = 5
+border_color = Color(0.72549, 0.133333, 0.490196, 0.627451)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+expand_margin_left = 25.0
+expand_margin_right = 25.0
+
+[resource]
+default_font_size = 17
+Button/colors/font_focus_color = Color(0.94902, 0.94902, 0, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.94902, 0, 1)
+Button/colors/font_pressed_color = Color(1, 0, 1, 1)
+Button/fonts/font = ExtResource("1_dbubc")
+Button/styles/focus = SubResource("StyleBoxEmpty_f3x8d")
+Button/styles/hover = SubResource("StyleBoxEmpty_ydqg1")
+Button/styles/normal = SubResource("StyleBoxEmpty_kbpx6")
+Button/styles/pressed = SubResource("StyleBoxEmpty_uqwq5")
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ymoqt")
